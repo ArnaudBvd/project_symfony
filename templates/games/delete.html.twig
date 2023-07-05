@@ -6,6 +6,7 @@
 
     <h1 class="">
         Delete : {{ game.title|capitalize }} ❌
+        <a href="{{path('games-list')}}" class="mb-4">Retour</a>
 {#  #}
         <a class="btn btn-secondary"
            href="{{ path("games-list") }}">Annuler</a>

@@ -1,13 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Game 🟢{% endblock %}
+{% block title %}Update {{ game.title }} ✏️{% endblock %}
 
 {% block body %}
-
-<div class="">
-    <h1>New Game</h1>
+    <h1>Update ✏️</h1>
     <a href="{{path('games-list')}}" class="mb-4">Retour</a>
     {% include('games/form.html.twig') %}
-
-</div>
 {% endblock %}

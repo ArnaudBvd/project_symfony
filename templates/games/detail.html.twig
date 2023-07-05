@@ -11,15 +11,18 @@
 <div class="example-wrapper">
     <h1 class="text-center my-5"> {{ game.title}} </h1>
     <a href="{{path('games-list')}}" class="mb-4">Retour</a>
-<div>
-<p class="text-center">{{game.editor}}</p>
-<p class="text-center">{{game.gender}}</p>
-{# <p class="text-center">{{game.year}}</p> #}
-<img src="{{ asset ('images/' ~ game.picture) }}" alt="image du jeu" width="220" height="250" class="rounded mx-auto d-block"></br>
-<p class="text-center">{{game.title}}</p>
-<a class="btn btn-outline-danger " href="{{ path('game-confirm-delete' ,{'id': game.id }) }}">Delete</a>
-</div>
+        <div>
+            <p class="text-center">{{game.editor}}</p>
+            <p class="text-center">{{game.gender}}</p>
+            {# <p class="text-center">{{game.year}}</p> #}
+            <img src="{{ asset ('images/' ~ game.picture) }}" alt="image du jeu" width="220" height="250" class="rounded mx-auto d-block"></br>
+            <p class="text-center">{{game.title}}</p>
 
+            <div class="d-flex justify-content-center">
+                <a class="btn btn-outline-info me-2" href="{{ path('game-update' ,{'id': game.id }) }}">Update</a>
+                <a class="btn btn-outline-danger ms-2" href="{{ path('game-confirm-delete' ,{'id': game.id }) }}">Delete</a>
+            </div>
 
+        </div>
 </div>
 {% endblock %}

@@ -66,6 +66,35 @@ class GamesController extends AbstractController
             ]);
     }
 
+    #[Route('/update/{id}', name: 'game-update',methods: ['POST','GET'])]
+    public function update(int $id, Request $request, GamesRepository $gamesRepository): Response
+    {
+        //Recuperer l'element a modifier
+        $game = $gamesRepository->find($id);
+        if($game){
+            //Recuperer le formulaire
+            $form = $this->createForm(GameType::class,$game);
+            //Valider le formulaire
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                //Enregistre les données
+                $gamesRepository->save($game,true);
+                //Redirige LIST
+                return $this->redirectToRoute('games-list');
+            }
+
+            //Afficher le formulaire
+            return $this->render('games/update.html.twig', [
+                'form' => $form,
+                'game' => $game
+            ]);
+        }
+
+        return $this->redirectToRoute("games-list");
+
+    }
+
+
     #[Route('/confirm-delete/{id}', name: 'game-confirm-delete',methods: ['POST','GET'])]
     public function confirmDelete(Games $games): Response
     {
