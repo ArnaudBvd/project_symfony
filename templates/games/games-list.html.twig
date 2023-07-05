@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Epic Games Collection{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1 class="text-center my-5"> {{ controller_name }} </h1>
+    <a href="{{path('app_games')}}" class="mb-4">Retour</a>
+
+<div class="d-flex flex-wrap mt-4">
+    {% for game in games %}
+        <div class="col-4 my-3">
+            <p class="text-center">{{game.title}}</p>
+            <img src="{{ asset ('images/' ~ game.picture) }}" alt="image du jeu" width="220" height="250" class="rounded mx-auto d-block"></br>
+            <div class="text-center"><a href="{{path('game-detail', {'id':game.id})}}">Detail</a></div>
+        </div>
+    {% else %}
+    <p> No game have been found</p>
+
+    {% endfor %}
+</div>
+
+</div>
+{% endblock %}
