@@ -66,5 +66,20 @@ class GamesController extends AbstractController
             ]);
     }
 
+    #[Route('/confirm-delete/{id}', name: 'game-confirm-delete',methods: ['POST','GET'])]
+    public function confirmDelete(Games $games): Response
+    {
+        return $this->render('games/delete.html.twig',[
+            'game' => $games
+        ]);
+    }
+
+    #[Route('/delete/{id}', name: 'game-delete',methods: ['POST','GET'])]
+    public function delete(Games $games, GamesRepository $gamesRepository): Response
+    {
+        $gamesRepository->remove($games,true);
+
+        return $this->redirectToRoute("games-list");
+    }
 
 }

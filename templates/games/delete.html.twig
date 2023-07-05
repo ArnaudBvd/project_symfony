@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Delete a game{% endblock %}
+
+{% block body %}
+
+    <h1 class="">
+        Delete : {{ game.title|capitalize }} ❌
+{#  #}
+        <a class="btn btn-secondary"
+           href="{{ path("games-list") }}">Annuler</a>
+        <a class="btn btn-danger"
+           href="{{ path("game-delete", {"id": game.id}) }}">
+            Confirmer
+        </a>
+    </h1>
+{% endblock %}

@@ -17,7 +17,7 @@
 {# <p class="text-center">{{game.year}}</p> #}
 <img src="{{ asset ('images/' ~ game.picture) }}" alt="image du jeu" width="220" height="250" class="rounded mx-auto d-block"></br>
 <p class="text-center">{{game.title}}</p>
-
+<a class="btn btn-outline-danger " href="{{ path('game-confirm-delete' ,{'id': game.id }) }}">Delete</a>
 </div>
 
 
