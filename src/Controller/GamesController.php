@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Games;
+use App\Form\GameType;
 use App\Repository\GamesRepository;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -38,5 +41,30 @@ class GamesController extends AbstractController
             'game' => $game
         ]);
     }
+
+    #[Route('/new', name: 'game_new',methods: ['POST','GET'])]
+    public function new(GamesRepository $gamesRepository, Request $request): Response
+    {
+        // Créer un objet
+        $game = new Games();
+        // Avoir le formulaire
+        $form = $this->createForm(GameType::class, $game);
+
+        //Valider le formulaire
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            //Enregistre les données
+            $gamesRepository->save($game,true);
+            //Redirige vers LIST
+            return $this->redirectToRoute('games-list');
+        }
+
+        //Afficher formulaire
+        return $this->render('games/new.html.twig',
+            [
+                'form' => $form
+            ]);
+    }
+
 
 }

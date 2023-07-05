@@ -10,7 +10,9 @@
 
 <div class="example-wrapper">
     <h1 class="text-center my-5"> {{ controller_name }} </h1>
-    <a href="{{path('app_games')}}" class="mb-4">Retour</a>
+    <a href="{{path('app_games')}}" class="mb-5">Retour</a></br>
+
+    <a class="btn btn-outline-success my-4" href="{{path('game_new')}}">Add Game</a>
 
 <div class="d-flex flex-wrap mt-4">
     {% for game in games %}
